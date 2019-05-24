@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数节流</title>
+</head>
+<body>
+
+</body>
+<script>
+    function throttle(fn, intervals) {
+        let emission = true;
+        return function() {
+            if (emission) {
+                setTimeout(() => {
+                    fn();
+                    emission = true;
+                }, intervals);
+                emission = false;
+            }
+        };
+    }
+
+    let fire = () => {
+        let date = new Date()
+        console.log(`火球术${date}`);
+    };
+
+    setInterval(throttle(fire,1000),500)
+
+</script>
+</html>

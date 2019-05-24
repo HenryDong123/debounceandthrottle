@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数防抖</title>
+</head>
+<body>
+<button id="deButton">上车</button>
+<script>
+    function debounce(fn, intervals) {
+        let timeout = null
+        return function () {
+            if (timeout) {
+                window.clearTimeout(timeout)
+            }
+            timeout = setTimeout(() => {
+                fn()
+            }, intervals)
+        }
+    }
+    let bus = () => {
+        let date = new Date()
+        console.log(`客满了走人${date}`)
+    }
+    let a = debounce(bus, 2000)
+    document.getElementById('deButton').addEventListener('click', function () {
+        a()
+    }, false);
+</script>
+</body>
+</html>
